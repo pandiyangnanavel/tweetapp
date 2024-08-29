@@ -1,0 +1,11 @@
+.box p{
+    font-style: oblique;
+}
+.para{
+    font-style: oblique;
+    font-size: larger;
+}
+a{
+    text-decoration: none;
+    font-weight: bolder;
+}

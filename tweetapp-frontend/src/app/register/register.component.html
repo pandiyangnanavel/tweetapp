@@ -1,0 +1,46 @@
+<h1>Register!</h1>
+<div class="container">
+    <!-- <div *ngIf="registerForm.invalid" class="alert alert-warning">Enter valid values</div> -->
+    <div *ngIf="errorBool" class="alert alert-danger">Either Email or Login ID is already taken. Please provide another
+        Email and Login ID.</div>
+    <form (ngSubmit)="!registerForm.invalid && register()" #registerForm="ngForm">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name"
+                required="required" [(ngModel)]="firstName">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name"
+                required="required" [(ngModel)]="lastName">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email"
+                required="required" [(ngModel)]="Email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$">
+        </div>
+        <div class="form-group">
+            <label for="loginId">Login ID</label>
+            <input type="text" class="form-control" id="loginId" name="loginId" placeholder="Enter Login ID"
+                required="required" [(ngModel)]="loginId">
+        </div>
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" id="Password" name="Password" placeholder="Enter Password"
+                required="required" [(ngModel)]="password" #password1="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="Password">Confirm Password</label>
+            <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword"
+                placeholder="Enter Password Again" required="required" [(ngModel)]="confirmPassword"
+                #confirmPassword1="ngModel" pattern="{{password}}">
+        </div>
+        <div class="form-group">
+            <label for="contactNumber">Contact Number</label>
+            <input type="text" class="form-control" id="contactNumber" name="contactNumber"
+                placeholder="Enter Contact Number" required="required" [(ngModel)]="contactNumber"
+                pattern="^[0-9]{10}$">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>

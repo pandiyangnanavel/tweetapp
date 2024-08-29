@@ -1,0 +1,31 @@
+<h1>Users</h1>
+
+<div class="container">
+    <div class="input-group">
+        <div class="form-outline div">
+            <input type="search" class="form-control" placeholder="Search by username" [(ngModel)]="str">
+        </div>
+        <button id="search-button" type="button" class="btn btn-primary bt" (click)="search()">
+            Search
+        </button>
+        <button id="search-button" type="button" class="btn btn-primary" (click)="all()">
+            All Users
+        </button>
+    </div>
+    <br />
+    <div *ngIf="searchMessage" class="alert alert-warning">{{searchMessage}}</div>
+    <ul class="list-group">
+        <div *ngIf="noUser" class="alert alert-warning">{{noUser}}</div>
+        <li class="list-group-item" *ngFor="let u of user">
+            <a *ngIf="!(loginId===u.loginId)" routerLink="/tweets/{{loginId}}/user/{{u.loginId}}">
+                <h5>@{{u.loginId}}</h5>
+            </a>
+            <a *ngIf="loginId===u.loginId" routerLink="/tweets/{{loginId}}/home">
+                <h5>@{{u.loginId}}</h5>
+            </a>
+            <small class="text-muted">
+                {{u.firstName}} {{u.lastName}}
+            </small>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a *ngIf="!(name===tweet.loginId)" routerLink="/tweets/{{name}}/user/{{tweet.loginId}}">
+                <h5>@{{tweet.loginId}}</h5>
+            </a>
+            <a *ngIf="name===tweet.loginId" routerLink="/tweets/{{name}}/home">
+                <h5>@{{tweet.loginId}}</h5>
+            </a>
+            <p class="nm para">{{tweet.tweets}}</p>
+            <small class="text-muted">{{tweet.date | date : 'dd MMM yyyy, h:mm a'}}</small>
+        </li>
+    </ul>
+
+    <h4>Comments</h4>
+
+    <div class="container">
+        <div class="form-group">
+            <textarea class="form-control" rows="3" maxlength="144" placeholder="Reply To Tweet"
+                [(ngModel)]="comment"></textarea>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" rows="2" maxlength="50" placeholder="Add tags (Optional)"
+                [(ngModel)]="tags"></textarea>
+        </div>
+
+        <div *ngIf="messageInComment" class="alert alert-warning">{{messageInComment}}
+        </div>
+        <div>
+            <button class="btn btn-primary" (click)=postComment()>Reply to Tweet</button>
+        </div>
+        <br>
+
+        <div *ngIf='noComments' class="alert alert-warning">
+            {{noComments}}
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item box" *ngFor="let comment of comments">
+                <a *ngIf="!(name===comment.loginId)" routerLink="/tweets/{{name}}/user/{{comment.loginId}}">
+                    <h5>@{{comment.loginId}}</h5>
+                </a>
+                <a *ngIf="name===comment.loginId" routerLink="/tweets/{{name}}/home">
+                    <h5>@{{comment.loginId}}</h5>
+                </a>
+                <p class="nm">{{comment.comment}}</p>
+                <small class="text-muted">{{comment.date | date : 'dd MMM yyyy, h:mm a'}}</small>
+            </li>
+        </ul>
+    </div>
+</div>

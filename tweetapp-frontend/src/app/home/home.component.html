@@ -1,0 +1,42 @@
+<h1>Welcome @{{name}}!</h1>
+
+
+<div class="container">
+    <div class="form-group">
+        <textarea class="form-control" rows="3" maxlength="144" placeholder="What's going on your mind?"
+            [(ngModel)]="tweet"></textarea>
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" rows="2" maxlength="50" placeholder="Add tags (Optional)"
+            [(ngModel)]="tags"></textarea>
+    </div>
+    <div *ngIf=tweetInValid class="alert alert-warning">{{messageForTweet}}
+    </div>
+    <div>
+        <button class="btn btn-primary" (click)=postTweet()>Post Tweet</button>
+    </div>
+</div>
+
+<h1>My Tweets</h1>
+
+<div class="container tweet">
+    <div *ngIf='tweetsToShow' class="alert alert-warning">
+        {{tweetsToShow}}
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let tweet of tweets">
+            <h5 class="semibold ellipsis nm">@{{tweet.loginId}} </h5>
+            <p class="nm">{{tweet.tweets}}</p>
+            <div class="button">
+                <button (click)="deleteTweet(tweet.id)"><i class="material-icons">delete</i></button>
+                <button (click)="updateTweet(tweet.id)"><i class="material-icons">edit</i></button>
+                <button (click)="updateLikes(tweet.id)"><i class="material-icons">thumb_up</i><small
+                        class="badge badge-primary badge-pill" *ngFor="let l of likes">
+                        <ng-container *ngIf="(tweet.id === l.id) && (l.likes!=0)">{{l.likes}}</ng-container>
+                    </small></button>
+                <button (click)="checkComments(tweet.id)"><i class="material-icons">comment</i></button>
+            </div>
+            <small class="text-muted">{{tweet.date | date : 'dd MMM yyyy, h:mm a'}}</small>
+        </li>
+    </ul>
+</div>

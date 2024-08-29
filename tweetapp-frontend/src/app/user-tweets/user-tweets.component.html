@@ -1,0 +1,21 @@
+<h1>@{{user.loginId}}</h1> <small class="text-muted sm"> {{user.firstName}} {{user.lastName}}</small>
+
+<div class="container tweet">
+    <div *ngIf='tweetsToShow' class="alert alert-warning">
+        {{tweetsToShow}}
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let tweet of tweets">
+            <h5 class="semibold ellipsis nm">@{{tweet.loginId}}</h5>
+            <p class="nm">{{tweet.tweets}}</p>
+            <div class="button">
+                <button (click)="updateLikes(tweet.id)"><i class="material-icons">thumb_up</i><small
+                        class="badge badge-primary badge-pill" *ngFor="let l of likes">
+                        <ng-container *ngIf="(tweet.id === l.id) && (l.likes!=0)">{{l.likes}}</ng-container>
+                    </small></button>
+                <button (click)="checkComments(tweet.id)"><i class="material-icons">comment</i></button>
+            </div>
+            <small class="text-muted">{{tweet.date | date : 'dd MMM yyyy, h:mm a'}}</small>
+        </li>
+    </ul>
+</div>

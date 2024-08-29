@@ -1,0 +1,26 @@
+<h1>Tweets</h1>
+
+<div class="container tweet">
+    <div *ngIf='tweetsToShow' class="alert alert-warning">
+        {{tweetsToShow}}
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let tweet of tweets">
+            <a *ngIf="!(loginId===tweet.loginId)" routerLink="/tweets/{{loginId}}/user/{{tweet.loginId}}">
+                <h5>@{{tweet.loginId}}</h5>
+            </a>
+            <a *ngIf="loginId===tweet.loginId" routerLink="/tweets/{{loginId}}/home">
+                <h5>@{{tweet.loginId}}</h5>
+            </a>
+            <p class="nm">{{tweet.tweets}}</p>
+            <div class="button">
+                <button (click)="updateLikes(tweet.id)"><i class="material-icons">thumb_up</i><small
+                        class="badge badge-primary badge-pill" *ngFor="let l of likes">
+                        <ng-container *ngIf="(tweet.id === l.id) && (l.likes!=0)">{{l.likes}}</ng-container>
+                    </small></button>
+                <button (click)="checkComments(tweet.id)"><i class="material-icons">comment</i></button>
+            </div>
+            <small class="text-muted">{{tweet.date | date : 'dd MMM yyyy, h:mm a'}}</small>
+        </li>
+    </ul>
+</div>

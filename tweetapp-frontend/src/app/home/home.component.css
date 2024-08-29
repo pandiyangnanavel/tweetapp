@@ -1,0 +1,14 @@
+.button button{
+    background-color: white;
+    border: none;
+    color: #4285F4;
+}
+li{
+    border-left: none;
+    border-right: none;
+    box-shadow: 5px 10px #4285F4;
+}
+
+.tweet{
+    padding-bottom: 1%;
+}
